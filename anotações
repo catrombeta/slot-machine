@@ -1,0 +1,244 @@
+
+const reel1 = document.getElementById("reel1");
+const reel2 = document.getElementById("reel2");
+const reel3 = document.getElementById("reel3");
+const spinButton = document.getElementById("spin-button");
+const result = document.getElementById("result");
+
+// array of symbols for the slot machine
+const symbols = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+];
+
+// function to spin the reels and determine the outcome
+function spin() {
+    const spin1 = Math.floor(Math.random() * symbols.length);
+    const spin2 = Math.floor(Math.random() * symbols.length);
+    const spin3 = Math.floor(Math.random() * symbols.length);
+    const jackpot = ((spin1 === spin2) === 1) && ((spin2 === spin3) === 1);
+
+    reel1.innerHTML = symbols[spin1];
+    reel2.innerHTML = symbols[spin2];
+    reel3.innerHTML = symbols[spin3];
+
+    if ((spin1 === 1) && (spin2 === 1) && (spin3 === 1)) {
+        result.innerHTML = "JACKPOT!"; console.log(spin1, spin2, spin3, result)
+    } else if ((spin1 ===! 1) && (spin2 ===! 1) && (spin3 ===! 1)) {
+        result.innerHTML = "You win!"; console.log(spin1, spin2, spin3, result)
+    } else {
+        result.innerHTML = "Try Again!";
+    }
+}
+
+// event listener for the spin button
+spinButton.addEventListener("click", spin);
+
+function rotation() {
+    let position = 0;
+    const intervalId = setInterval(() => {
+        position += 10;
+        reel1.style.transform = `rotate(${position}deg)`;
+        reel2.style.transform = `rotate(${position}deg)`;
+        reel3.style.transform = `rotate(${position}deg)`;
+    }, 50);
+}
+
+// CHAT GPT 
+
+///////// JS
+
+
+const reel1 = document.getElementById("reel1");
+const reel2 = document.getElementById("reel2");
+const reel3 = document.getElementById("reel3");
+const spinButton = document.getElementById("spin-button");
+const result = document.getElementById("result");
+
+// array of symbols for the slot machine
+const symbols = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+];
+
+// function to spin the reels and determine the outcome
+function spin() {
+    const spin1 = Math.floor(Math.random() * symbols.length);
+    const spin2 = Math.floor(Math.random() * symbols.length);
+    const spin3 = Math.floor(Math.random() * symbols.length);
+
+    reel1.innerHTML = symbols[spin1];
+    reel2.innerHTML = symbols[spin2];
+    reel3.innerHTML = symbols[spin3];
+
+    if (spin1 === spin2 && spin2 === spin3) {
+        result.innerHTML = "JACKPOT!";
+    } else {
+        result.innerHTML = "Try Again!";
+    }
+}
+
+// event listener for the spin button
+spinButton.addEventListener("click", spin);
+
+function rotation() {
+    let position = 0;
+    const intervalId = setInterval(() => {
+        position += 10;
+        reel1.style.transform = `rotate(${position}deg)`;
+        reel2.style.transform = `rotate(${position}deg)`;
+        reel3.style.transform = `rotate(${position}deg)`;
+    }, 50);
+}
+
+
+///////// CSS
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: #AF8666;
+    width: 100%;
+}
+
+nav a {
+    padding: 1em 0;
+    width: 50%;
+    text-align: center;
+}
+
+nav a:hover {
+    background-color: #CCA88C;
+    transition: 0.7s;
+}
+
+.nav-icon {
+    width: 3em;
+}
+
+section {
+    width: 80%;
+    margin: 0 auto;
+}
+
+#slot-machine {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#reel1,
+#reel2,
+#reel3 {
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    text-align: center;
+    line-height: 50px;
+    font-size: 20px;
+    margin: 0 10px;
+}
+
+#spin-button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #AF8666;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    margin: 0 auto;
+}
+
+#spin-button:hover {
+    background-color: #CCA88C;
+    transition: 0.7s;
+}
+
+#result {
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+/* @keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#reel1,
+#reel2,
+#reel3 {
+    animation: spin 2s ease-in-out infinite;
+} */
+
+///////////////// HTML 
+
+<!DOCTYPE html>
+<html lang="pt-pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slot Machine</title>
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <script defer src="./assets/main.js"></script>
+  </head>
+  <body>
+    <nav>
+        <a href="#">
+            <img src="./src/icons/nav-icon-play.png" alt="Icon Play Slideshow" class="nav-icon">
+        </a>
+        <a href="#">
+            <img src="./src/icons/nav-icon-slot-machine.png" alt="Icon Slot Machine" class="nav-icon">
+        </a>
+    </nav>
+    <section>
+        <div id="slot-machine">
+          <div id="reel1"></div>
+          <div id="reel2"></div>
+          <div id="reel3"></div>
+        </div>
+        <button id="spin-button">Spin</button>
+        <p id="result"></p>
+    </section>
+  </body>
+</html>
+
+
+// CHAT GTP 
+
+There are JavaScript libraries that abstract the process of sending email and make it easier to use, but they still rely on a server-side component to send the email.
+
+Here are a few examples of JavaScript libraries that you can use to send email:
+
+nodemailer: A Node.js library that allows you to send email using JavaScript. It supports various transport methods including SMTP, Sendmail, and Amazon SES.
+emailjs: A JavaScript library that allows you to send email using JavaScript on the client-side and a simple Node.js server on the server-side.
+mailgo: A JavaScript library that allows you to send email using JavaScript and a Node.js server.
+Please note that these libraries still require you to set up a server-side component and configure it to send email. They don't provide a way to send email directly from JavaScript running in a browser.
+
+Alternatively, you can use the email service providers, like Sendgrid or Mailgun, that offer a node js library or SDKs to interact with their API and send the email with the prize information.
+
+In any case, you will need a back-end component to send the email, these libraries and frameworks just help you to abstract the complexity of connecting to an email server and sending the email.

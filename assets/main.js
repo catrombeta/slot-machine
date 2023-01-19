@@ -1,48 +1,80 @@
+const SLOTS_PER_REEL = 12;
+// radius = Math.round( ( panelWidth / 2) / Math.tan( Math.PI / SLOTS_PER_REEL ) ); 
+// current settings give a value of 149, rounded to 150
+const REEL_RADIUS = 150;
 
-const reel1 = document.getElementById("reel1");
-const reel2 = document.getElementById("reel2");
-const reel3 = document.getElementById("reel3");
-const spinButton = document.getElementById("spin-button");
-const result = document.getElementById("result");
+function createSlots(ring) {
+    var slotAngle = 360 / SLOTS_PER_REEL;
+    var seed = getSeed();
 
-// array of symbols for the slot machine
-const symbols = [
-    "cherry",
-    "lemon",
-    "orange",
-    "plum",
-    "bell",
-    "bar",
-    "seven",
-    "blank",
-];
+    for (var i = 0; i < SLOTS_PER_REEL; i++) {
+        var slot = document.createElement('div');
 
-// function to spin the reels and determine the outcome
-function spin() {
-    const spin1 = Math.floor(Math.random() * symbols.length);
-    const spin2 = Math.floor(Math.random() * symbols.length);
-    const spin3 = Math.floor(Math.random() * symbols.length);
+        slot.className = 'slot';
 
-    reel1.innerHTML = symbols[spin1];
-    reel2.innerHTML = symbols[spin2];
-    reel3.innerHTML = symbols[spin3];
+        // compute and assign the transform for this slot
+        var transform = 'rotateX(' + (slotAngle * i) + 'deg) translateZ(' + REEL_RADIUS + 'px)';
 
-    if (spin1 === spin2 && spin2 === spin3) {
-        result.innerHTML = "JACKPOT!";
-    } else {
-        result.innerHTML = "Try Again!";
+        slot.style.transform = transform;
+
+        // setup the number to show inside the slots
+        // the position is randomized to
+
+        let content = () => {
+            content = `<img src="./src/images/slot-icon-${((seed + i) % 12)}.svg" />`
+            $(slot).append(content);
+        }
+        content();
+
+        // add the poster to the row
+        ring.append(slot);
     }
 }
 
-// event listener for the spin button
-spinButton.addEventListener("click", spin);
-
-function rotation() {
-    let position = 0;
-    const intervalId = setInterval(() => {
-        position += 10;
-        reel1.style.transform = `rotate(${position}deg)`;
-        reel2.style.transform = `rotate(${position}deg)`;
-        reel3.style.transform = `rotate(${position}deg)`;
-    }, 50);
+function getSeed() {
+    // generate random number smaller than 13 then floor it to settle between 0 and 12 inclusive
+    return Math.floor(Math.random() * (SLOTS_PER_REEL));
 }
+
+function spin(timer) {
+    for (var i = 1; i < 6; i++) {
+        var oldSeed = -1;
+        /*
+        checking that the old seed from the previous iteration is not the same as the current iteration;
+        if this happens then the reel will not spin at all
+        */
+        var oldClass = $('#ring' + i).attr('class');
+        if (oldClass.length > 4) {
+            oldSeed = parseInt(oldClass.slice(10));
+            console.log(oldSeed);
+        }
+        
+        var seed = getSeed();
+        while (oldSeed == seed) {
+            seed = getSeed();
+        }
+
+        $('#ring' + i)
+            .css('animation', 'back-spin 1s, spin-' + seed + ' ' + (timer + i * 0.5) + 's')
+            .attr('class', 'ring spin-' + seed);
+    }
+
+    console.log('=====');
+    console.log(seed);
+}
+
+$(document).ready(function () {
+
+    // initiate slots 
+    createSlots($('#ring1'));
+    createSlots($('#ring2'));
+    createSlots($('#ring3'));
+    createSlots($('#ring4'));
+    createSlots($('#ring5'));
+
+    // hook start button
+    $('.go').on('click', function () {
+        var timer = 2;
+        spin(timer);
+    })
+});

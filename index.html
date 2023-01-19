@@ -5,24 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Slot Machine</title>
-    <link rel="stylesheet" href="./assets/styles.css">
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <script src="./assets/JQuery/jquery-3.6.1.min.js"></script>
     <script defer src="./assets/main.js"></script>
   </head>
   <body>
     <nav>
-        <div class="col-6">
+        <a href="#">
             <img src="./src/icons/nav-icon-play.png" alt="Icon Play Slideshow" class="nav-icon">
-        </div>
-        <div class="col-6">
+        </a>
+        <a href="#">
             <img src="./src/icons/nav-icon-slot-machine.png" alt="Icon Slot Machine" class="nav-icon">
-        </div>
+        </a>
     </nav>
-    <div id="slot-machine">
-      <div id="reel1"></div>
-      <div id="reel2"></div>
-      <div id="reel3"></div>
-    </div>
-    <button id="spin-button">Spin</button>
-    <p id="result"></p>
+    <section>
+      <div id="stage" class="perspective-on">
+        <div id="rotate">
+          <div id="ring1" class="ring"></div>
+          <div id="ring2" class="ring"></div>
+          <div id="ring3" class="ring"></div>
+          <div id="ring4" class="ring"></div>
+          <div id="ring5" class="ring"></div>
+      </div>
+      <div>
+          <button class="go">Start spinning</button>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
