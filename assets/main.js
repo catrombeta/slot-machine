@@ -36,3 +36,13 @@ function spin() {
 
 // event listener for the spin button
 spinButton.addEventListener("click", spin);
+
+function rotation() {
+    let position = 0;
+    const intervalId = setInterval(() => {
+        position += 10;
+        reel1.style.transform = `rotate(${position}deg)`;
+        reel2.style.transform = `rotate(${position}deg)`;
+        reel3.style.transform = `rotate(${position}deg)`;
+    }, 50);
+}
