@@ -1,80 +1,82 @@
-const SLOTS_PER_REEL = 12;
-// radius = Math.round( ( panelWidth / 2) / Math.tan( Math.PI / SLOTS_PER_REEL ) ); 
-// current settings give a value of 149, rounded to 150
-const REEL_RADIUS = 150;
+// QUANTIDADE DE SLOTS POR RODA
+const slots_wheel = 12;
+// WIDTH DETERMINADA NO CSS DE CADA SLOT
+const slot_width = 80;
+// CALCULO DO RADIO DA RODA
+const wheel_radius = Math.round((slot_width / 2) / Math.tan(Math.PI / slots_wheel));
 
 function createSlots(ring) {
-    var slotAngle = 360 / SLOTS_PER_REEL;
-    var seed = getSeed();
+    var slotAngle = 360 / slots_wheel;
+    var startingPosition = generateStartingPosition();
 
-    for (var i = 0; i < SLOTS_PER_REEL; i++) {
-        var slot = document.createElement('div');
+    for (let i = 0; i < slots_wheel; i++) {
+        let slot = document.createElement('div');
 
         slot.className = 'slot';
 
         // compute and assign the transform for this slot
-        var transform = 'rotateX(' + (slotAngle * i) + 'deg) translateZ(' + REEL_RADIUS + 'px)';
+        let transform = 'rotateX(' + (slotAngle * i) + 'deg) translateZ(' + wheel_radius + 'px)';
 
         slot.style.transform = transform;
 
-        // setup the number to show inside the slots
-        // the position is randomized to
-
         let content = () => {
-            content = `<img src="./src/images/slot-icon-${((seed + i) % 12)}.svg" />`
+            content = `<img src="./src/images/slot-icon-${((startingPosition + i) % 12)}.svg" />`
             $(slot).append(content);
         }
         content();
 
-        // add the poster to the row
         ring.append(slot);
     }
 }
 
-function getSeed() {
-    // generate random number smaller than 13 then floor it to settle between 0 and 12 inclusive
-    return Math.floor(Math.random() * (SLOTS_PER_REEL));
+// function setClass() {
+//     for (let i = 0; i < slots_wheel; i++) {
+//         let className = `.spin-${i}`;
+//         let transform = `transform: rotateX(${-slot_angle * i}deg);`;
+//         $('slot').css(`${className} { ${transform} }`)
+// }
+
+function generateStartingPosition() {
+    let generateNumber = Math.floor(Math.random() * slots_wheel);
+    return Math.floor(generateNumber);
 }
 
 function spin(timer) {
     for (var i = 1; i < 6; i++) {
-        var oldSeed = -1;
+        var oldPosition = -1;
         /*
-        checking that the old seed from the previous iteration is not the same as the current iteration;
-        if this happens then the reel will not spin at all
+        checking that the old startingPosition from the previous iteration is not the same as the current iteration;
+        if this happens then the wheel will not spin at all
         */
         var oldClass = $('#ring' + i).attr('class');
         if (oldClass.length > 4) {
-            oldSeed = parseInt(oldClass.slice(10));
-            console.log(oldSeed);
+            oldPosition = parseInt(oldClass.slice(10));
+            console.log(oldPosition);
         }
         
-        var seed = getSeed();
-        while (oldSeed == seed) {
-            seed = getSeed();
+        var startingPosition = generateStartingPosition();
+        while (oldPosition == startingPosition) {
+            startingPosition = generateStartingPosition();
         }
 
         $('#ring' + i)
-            .css('animation', 'back-spin 1s, spin-' + seed + ' ' + (timer + i * 0.5) + 's')
-            .attr('class', 'ring spin-' + seed);
+            .css('animation', `back-spin 1s, spin-${startingPosition} ${timer + i * 0.5}s`)
+            .attr('class', `ring spin-${startingPosition}`);
     }
 
     console.log('=====');
-    console.log(seed);
+    // console.log(oldClass, 'ESSA É A CLASSE ANTIGA')
+    console.log(oldPosition, 'ESSA É A POSIÇÃO ANTIGA');
+    console.log(startingPosition, 'ESSA É A POSIÇÃO ATUAL');
 }
 
 $(document).ready(function () {
+    const ringIds = ['ring1', 'ring2', 'ring3', 'ring4', 'ring5'];
+    ringIds.forEach(id => createSlots($(`#${id}`)));
 
-    // initiate slots 
-    createSlots($('#ring1'));
-    createSlots($('#ring2'));
-    createSlots($('#ring3'));
-    createSlots($('#ring4'));
-    createSlots($('#ring5'));
-
-    // hook start button
-    $('.go').on('click', function () {
-        var timer = 2;
+    $('.startSpinner').on('click', function () {
+        const timer = 3;
         spin(timer);
     })
 });
+

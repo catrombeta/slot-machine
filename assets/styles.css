@@ -16,7 +16,7 @@ nav a {
     text-align: center;
 }
 
-nav a:hover {
+nav a:hover, button:hover {
     background-color: #CCA88C;
     transition: 0.7s;
 }
@@ -25,28 +25,28 @@ nav a:hover {
     width: 3em;
 }
 
-/* section {
+.slot-machine-section {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.arrow-row {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#result-slot {
     width: 80%;
-    margin: 0 auto;
-} */
-
-#stage {
-    margin: 0 auto;
-    width: 600px;
-    padding: 0 0 40px;
 }
 
-.perspective-on {
-    -webkit-perspective: 1000px;
-    -moz-perspective: 1000px;
-    perspective: 1000px;
-    /* Setting the perspective of the contents of the stage but not the stage itself*/
-}
-
-.perspective-off {
-    -webkit-perspective: 0;
-    -moz-perspective: 0;
-    perspective: 0;
+.perspective {
+    perspective: 900px;
+    perspective-origin: 50% 50%;
+    /* Setting the perspective of the contents of the result-slot but not the result-slot itself*/
 }
 
 #rotate {
@@ -64,7 +64,6 @@ nav a:hover {
     width: 90px;
     float: left;
     transform-style: preserve-3d;
-
 }
 
 .slot {
@@ -74,18 +73,10 @@ nav a:hover {
     box-sizing: border-box !important;
     opacity: 0.9;
     padding: 0.5em;
-    color: rgba(0, 0, 0, 0.9);
-    background: #fff;
-    border: solid 2px #000;
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
+    border: solid 1px #AF8666;
     backface-visibility: hidden;
-}
+    transform: rotateX(10deg) rotateY(15deg);
 
-.backface-on {
-    -webkit-backface-visibility: visible;
-    -moz-backface-visibility: visible;
-    backface-visibility: visible;
 }
 
 .slot img {
@@ -93,12 +84,16 @@ nav a:hover {
     align-self: center;
 }
 
-.go {
+.startSpinner {
     display: block;
     margin: 0 auto 20px;
     padding: 10px 30px;
     font-size: 20px;
     cursor: pointer;
+    color: white;
+    background-color: #AF8666;
+    border: none;
+    border-radius: 0.5em;
 }
 
 label {
@@ -108,11 +103,7 @@ label {
     text-align: center;
 }
 
-/* .tilted {
-    transform: rotateY(45deg);
-} */
 
-/*=====*/
 .spin-0 {
     transform: rotateX(-3719deg);
 }

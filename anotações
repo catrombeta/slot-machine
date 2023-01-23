@@ -242,3 +242,13 @@ Please note that these libraries still require you to set up a server-side compo
 Alternatively, you can use the email service providers, like Sendgrid or Mailgun, that offer a node js library or SDKs to interact with their API and send the email with the prize information.
 
 In any case, you will need a back-end component to send the email, these libraries and frameworks just help you to abstract the complexity of connecting to an email server and sending the email.
+
+// // function setClassRing() {
+    //     for (let i = -4050; i < -3720; i += 30) {
+    //         console.log(transform)
+    //     }
+    
+    //     for (let i = 0; i < 12; i++) {
+    //         $(`.spin-${startingPosition}`).css('transform', `rotateX())`);
+    //     }
+    // }

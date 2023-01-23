@@ -18,19 +18,27 @@
             <img src="./src/icons/nav-icon-slot-machine.png" alt="Icon Slot Machine" class="nav-icon">
         </a>
     </nav>
-    <section>
-      <div id="stage" class="perspective-on">
-        <div id="rotate">
-          <div id="ring1" class="ring"></div>
-          <div id="ring2" class="ring"></div>
-          <div id="ring3" class="ring"></div>
-          <div id="ring4" class="ring"></div>
-          <div id="ring5" class="ring"></div>
-      </div>
-      <div>
-          <button class="go">Start spinning</button>
+    <div class="section-transitions">
+      <section class="slot-machine-section">
+        <div class="arrow-row">
+          <img src="./src/icons/icon-row-slot.svg" alt="Arrow icon" class="ring">
         </div>
-      </div>
-    </section>
+        <div id="result-slot" class="perspective">
+          <div id="rotate">
+            <div id="ring1" class="ring"></div>
+            <div id="ring2" class="ring"></div>
+            <div id="ring3" class="ring"></div>
+            <div id="ring4" class="ring"></div>
+            <div id="ring5" class="ring"></div>
+        </div>
+        <div>
+            <button class="startSpinner">Start spinning</button>
+          </div>
+        </div>
+      </section>
+      <section class="slide-show-section">
+        
+      </section>
+    </div>
   </body>
 </html>
