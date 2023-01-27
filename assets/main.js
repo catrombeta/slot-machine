@@ -1,48 +1,41 @@
 // QUANTIDADE DE SLOTS POR RODA
-const slots_wheel = 12;
+const slots_wheel = 9;
 // WIDTH DETERMINADA NO CSS DE CADA SLOT
 const slot_width = 80;
 // CALCULO DO RADIO DA RODA
-const wheel_radius = Math.round((slot_width / 2) / Math.tan(Math.PI / slots_wheel));
+const wheel_radius = Math.round((slot_width / 2) / Math.tan(Math.PI / 9));
 
 function createSlots(ring) {
-    var slotAngle = 360 / slots_wheel;
-    var startingPosition = generateStartingPosition();
+var slotAngle = 360 / 9;
+var startingPosition = generateStartingPosition();
 
-    for (let i = 0; i < slots_wheel; i++) {
-        let slot = document.createElement('div');
+for (let i = 0; i < slots_wheel; i++) {
+    let slot = document.createElement('div');
 
-        slot.className = 'slot';
+    slot.className = 'slot';
 
-        // compute and assign the transform for this slot
-        let transform = 'rotateX(' + (slotAngle * i) + 'deg) translateZ(' + wheel_radius + 'px)';
+    // compute and assign the transform for this slot
+    let transform = 'rotateX(' + (slotAngle * i) + 'deg) translateZ(' + wheel_radius + 'px)';
 
-        slot.style.transform = transform;
+    slot.style.transform = transform;
 
-        let content = () => {
-            content = `<img src="./src/images/slot-icon-${((startingPosition + i) % 12)}.svg" />`
-            $(slot).append(content);
-        }
-        content();
-
-        ring.append(slot);
+    let content = () => {
+        content = `<img src="./src/images/slot-icon-${((startingPosition + i) % 9)}.svg" />`
+        $(slot).append(content);
     }
+    content();
+
+    ring.append(slot);
+}
 }
 
-// function setClass() {
-//     for (let i = 0; i < slots_wheel; i++) {
-//         let className = `.spin-${i}`;
-//         let transform = `transform: rotateX(${-slot_angle * i}deg);`;
-//         $('slot').css(`${className} { ${transform} }`)
-// }
-
 function generateStartingPosition() {
-    let generateNumber = Math.floor(Math.random() * slots_wheel);
+    let generateNumber = (Math.random() * slots_wheel);
     return Math.floor(generateNumber);
 }
 
 function spin(timer) {
-    for (var i = 1; i < 6; i++) {
+    for (var i = 1; i < 4; i++) {
         var oldPosition = -1;
         /*
         checking that the old startingPosition from the previous iteration is not the same as the current iteration;
@@ -64,18 +57,16 @@ function spin(timer) {
             .attr('class', `ring spin-${startingPosition}`);
     }
 
-    console.log('=====');
-    // console.log(oldClass, 'ESSA É A CLASSE ANTIGA')
     console.log(oldPosition, 'ESSA É A POSIÇÃO ANTIGA');
     console.log(startingPosition, 'ESSA É A POSIÇÃO ATUAL');
 }
 
 $(document).ready(function () {
-    const ringIds = ['ring1', 'ring2', 'ring3', 'ring4', 'ring5'];
+    const ringIds = ['ring1', 'ring2', 'ring3'];
     ringIds.forEach(id => createSlots($(`#${id}`)));
 
     $('.startSpinner').on('click', function () {
-        const timer = 3;
+        const timer = 2;
         spin(timer);
     })
 });

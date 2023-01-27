@@ -1,0 +1,432 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: #AF8666;
+    width: 100%;
+}
+
+nav a {
+    padding: 1em 0;
+    width: 50%;
+    text-align: center;
+}
+
+nav a:hover, button:hover {
+    background-color: #CCA88C;
+    transition: 0.7s;
+}
+
+.nav-icon {
+    width: 3em;
+}
+
+.slot-machine-section {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.arrow-row {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#result-slot {
+    width: 80%;
+    height: 80vh;
+}
+
+.perspective {
+    perspective: 900px;
+    perspective-origin: 50% 50%;
+    /* Setting the perspective of the contents of the result-slot but not the result-slot itself*/
+}
+
+#rotate {
+    margin: 0 auto 0;
+    width: 450px;
+    height: 220px;
+    padding-top: 200px;
+    /* Ensure that we're in 3D space */
+    transform-style: preserve-3d;
+}
+
+.ring {
+    margin: 0 auto;
+    height: 80px;
+    width: 90px;
+    float: left;
+    transform-style: preserve-3d;
+}
+
+.slot {
+    position: absolute;
+    width: 90px;
+    height: 80px;
+    box-sizing: border-box !important;
+    opacity: 0.9;
+    padding: 0.5em;
+    border: solid 1px #AF8666;
+    backface-visibility: hidden;
+    transform: rotateX(10deg) rotateY(15deg);
+
+}
+
+.slot img {
+    width: 90%;
+    align-self: center;
+}
+
+.startSpinner {
+    display: block;
+    margin: 0 auto 20px;
+    padding: 10px 30px;
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+    background-color: #AF8666;
+    border: none;
+    border-radius: 0.5em;
+}
+
+label {
+    cursor: pointer;
+    display: inline-block;
+    width: 45%;
+    text-align: center;
+}
+
+
+.spin-0 {
+    transform: rotateX(-3719deg);
+}
+
+.spin-1 {
+    transform: rotateX(-3749deg);
+}
+
+.spin-2 {
+    transform: rotateX(-3779deg);
+}
+
+.spin-3 {
+    transform: rotateX(-3809deg);
+}
+
+.spin-4 {
+    transform: rotateX(-3839deg);
+}
+
+.spin-5 {
+    transform: rotateX(-3869deg);
+}
+
+.spin-6 {
+    transform: rotateX(-3899deg);
+}
+
+.spin-7 {
+    transform: rotateX(-3929deg);
+}
+
+.spin-8 {
+    transform: rotateX(-3959deg);
+}
+
+.spin-9 {
+    transform: rotateX(-3989deg);
+}
+
+.spin-10 {
+    transform: rotateX(-4019deg);
+}
+
+.spin-11 {
+    transform: rotateX(-4049deg);
+}
+
+/*=====*/
+@keyframes back-spin {
+
+    /*0%    { transform: rotateX(0deg); }*/
+    100% {
+        transform: rotateX(30deg);
+    }
+}
+
+
+@keyframes spin-0 {
+    0% {
+        transform: rotateX(30deg);
+    }
+
+    100% {
+        transform: rotateX(-3719deg);
+    }
+}
+
+@keyframes spin-1 {
+    0% {
+        transform: rotateX(30deg);
+    }
+
+    100% {
+        transform: rotateX(-3749deg);
+    }
+}
+
+@keyframes spin-2 {
+    0% {
+        transform: rotateX(30deg);
+    }
+
+    100% {
+        transform: rotateX(-3779deg);
+    }
+}
+
+@keyframes spin-3 {
+    0% {
+        transform: rotateX(30deg);
+    }
+
+    100% {
+        transform: rotateX(-3809deg);
+    }
+}
+
+@keyframes spin-4 {
+    0% {
+        transform: rotateX(30deg);
+    }
+
+    100% {
+        transform: rotateX(-3839deg);
+    }
+}
+
+@keyframes spin-5 {
+    0% {
+        transform: rotateX(30deg);
+    }
+
+    100% {
+        transform: rotateX(-3869deg);
+    }
+}
+
+@keyframes spin-6 {
+    0% {
+        transform: rotateX(30deg);
+    }
+
+    100% {
+        transform: rotateX(-3899deg);
+    }
+}
+
+@keyframes spin-7 {
+    0% {
+        transform: rotateX(30deg);
+    }
+
+    100% {
+        transform: rotateX(-3929deg);
+    }
+}
+
+@keyframes spin-8 {
+    0% {
+        transform: rotateX(30deg);
+    }
+
+    100% {
+        transform: rotateX(-3959deg);
+    }
+}
+
+@keyframes spin-9 {
+    0% {
+        transform: rotateX(30deg);
+    }
+
+    100% {
+        transform: rotateX(-3989deg);
+    }
+}
+
+@keyframes spin-10 {
+    0% {
+        transform: rotateX(30deg);
+    }
+
+    100% {
+        transform: rotateX(-4019deg);
+    }
+}
+
+@keyframes spin-11 {
+    0% {
+        transform: rotateX(30deg);
+    }
+
+    100% {
+        transform: rotateX(-4049deg);
+    }
+}
+
+
+
+<!DOCTYPE html>
+<html lang="pt-pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slot Machine</title>
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+    <script src="./assets/JQuery/jquery-3.6.1.min.js"></script>
+    <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
+    <script defer src="./assets/main.js"></script>
+  </head>
+  <body>
+    <nav>
+        <a href="#">
+            <img src="./src/icons/nav-icon-play.png" alt="Icon Play Slideshow" class="nav-icon">
+        </a>
+        <a href="#">
+            <img src="./src/icons/nav-icon-slot-machine.png" alt="Icon Slot Machine" class="nav-icon">
+        </a>
+    </nav>
+    <div class="sections-transition align-items-center">
+      <section class="slot-machine-section">
+        <div class="row">
+          <div class="col-md-2">
+            <img src="./src/icons/icon-row-slot.svg" alt="Arrow icon" class="ring">
+          </div>
+          <div id="result-slot" class="perspective col-md-10">
+            <div id="rotate">
+              <div id="ring1" class="ring"></div>
+              <div id="ring2" class="ring"></div>
+              <div id="ring3" class="ring"></div>
+              <div id="ring4" class="ring"></div>
+              <div id="ring5" class="ring"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+
+            <button class="startSpinner">Start spinning</button>
+          </div>
+        </div>
+        
+      </section>
+      <section class="slide-show-section">
+        
+      </section>
+    </div>
+  </body>
+</html>
+
+
+-------------------------------------
+
+Claro, aqui está um exemplo de como você poderia implementar 3 rodas com 9 slots cada:
+
+Copy code
+<div id="rotate">
+  <div class="ring">
+    <div class="slot spin-0"></div>
+    <div class="slot spin-1"></div>
+    <div class="slot spin-2"></div>
+    <div class="slot spin-3"></div>
+    <div class="slot spin-4"></div>
+    <div class="slot spin-5"></div>
+    <div class="slot spin-6"></div>
+    <div class="slot spin-7"></div>
+    <div class="slot spin-8"></div>
+  </div>
+  <div class="ring">
+    <div class="slot spin-0"></div>
+    <div class="slot spin-1"></div>
+    <div class="slot spin-2"></div>
+    <div class="slot spin-3"></div>
+    <div class="slot spin-4"></div>
+    <div class="slot spin-5"></div>
+    <div class="slot spin-6"></div>
+    <div class="slot spin-7"></div>
+    <div class="slot spin-8"></div>
+  </div>
+  <div class="ring">
+    <div class="slot spin-0"></div>
+    <div class="slot spin-1"></div>
+    <div class="slot spin-2"></div>
+    <div class="slot spin-3"></div>
+    <div class="slot spin-4"></div>
+    <div class="slot spin-5"></div>
+    <div class="slot spin-6"></div>
+    <div class="slot spin-7"></div>
+    <div class="slot spin-8"></div>
+  </div>
+</div>
+
+E aqui está o CSS necessário para fazer as rodas funcionarem:
+
+Copy code
+#rotate {
+    margin: 0 auto;
+    width: 90px;
+    height: 80px;
+    transform-style: preserve-3d;
+    display: flex;
+}
+
+.ring {
+    height: 80px;
+    width: 90px;
+    transform-style: preserve-3d;
+}
+
+.slot {
+    position: absolute;
+    width: 90px;
+    height: 80px;
+    box-sizing: border-box !important;
+    opacity: 0.9;
+    padding: 0.5em;
+    border: solid 1px #AF8666;
+    backface-visibility: hidden;
+    transform: rotateX(40deg) rotateY(45deg);
+}
+
+.slot img {
+    width: 90%;
+    align-self: center;
+}
+
+.spin-0 {
+    transform: rotateX(-360deg);
+}
+
+.spin-1 {
+    transform: rotateX(-360deg) rotateY(40deg);
+}
+
+.spin-2 {
+    transform: rotateX(-360deg) rotateY(80deg);
+}
+
+.spin-3 {
+    transform: rotateX(-360deg) rotateY(120deg);
+}
+
+.spin-4 {
+    transform: rotateX(-360

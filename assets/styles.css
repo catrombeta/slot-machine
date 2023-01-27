@@ -29,7 +29,7 @@ nav a:hover, button:hover {
     display: flex;
     justify-content: center;
     width: 90%;
-    margin: 0 auto;
+    margin: 0 auto !important;
 }
 
 .arrow-row {
@@ -39,23 +39,13 @@ nav a:hover, button:hover {
     align-items: center;
 }
 
-#result-slot {
-    width: 80%;
-}
-
-.perspective {
-    perspective: 900px;
-    perspective-origin: 50% 50%;
-    /* Setting the perspective of the contents of the result-slot but not the result-slot itself*/
-}
-
 #rotate {
     margin: 0 auto 0;
-    width: 450px;
+    width: 278px;
     height: 220px;
     padding-top: 200px;
     /* Ensure that we're in 3D space */
-    transform-style: preserve-3d;
+    /* transform-style: preserve-3d; */
 }
 
 .ring {
@@ -86,7 +76,7 @@ nav a:hover, button:hover {
 
 .startSpinner {
     display: block;
-    margin: 0 auto 20px;
+    margin: 100px auto 20px;
     padding: 10px 30px;
     font-size: 20px;
     cursor: pointer;
@@ -105,51 +95,39 @@ label {
 
 
 .spin-0 {
-    transform: rotateX(-3719deg);
+    transform: rotateX(-360deg);
 }
 
 .spin-1 {
-    transform: rotateX(-3749deg);
+    transform: rotateX(-400deg);
 }
 
 .spin-2 {
-    transform: rotateX(-3779deg);
+    transform: rotateX(-440deg);
 }
 
 .spin-3 {
-    transform: rotateX(-3809deg);
+    transform: rotateX(-480deg);
 }
 
 .spin-4 {
-    transform: rotateX(-3839deg);
+    transform: rotateX(-520deg);
 }
 
 .spin-5 {
-    transform: rotateX(-3869deg);
+    transform: rotateX(-560deg);
 }
 
 .spin-6 {
-    transform: rotateX(-3899deg);
+    transform: rotateX(-600deg);
 }
 
 .spin-7 {
-    transform: rotateX(-3929deg);
+    transform: rotateX(-640deg);
 }
 
 .spin-8 {
-    transform: rotateX(-3959deg);
-}
-
-.spin-9 {
-    transform: rotateX(-3989deg);
-}
-
-.spin-10 {
-    transform: rotateX(-4019deg);
-}
-
-.spin-11 {
-    transform: rotateX(-4049deg);
+    transform: rotateX(-680deg);
 }
 
 /*=====*/
@@ -249,35 +227,5 @@ label {
 
     100% {
         transform: rotateX(-3959deg);
-    }
-}
-
-@keyframes spin-9 {
-    0% {
-        transform: rotateX(30deg);
-    }
-
-    100% {
-        transform: rotateX(-3989deg);
-    }
-}
-
-@keyframes spin-10 {
-    0% {
-        transform: rotateX(30deg);
-    }
-
-    100% {
-        transform: rotateX(-4019deg);
-    }
-}
-
-@keyframes spin-11 {
-    0% {
-        transform: rotateX(30deg);
-    }
-
-    100% {
-        transform: rotateX(-4049deg);
     }
 }

@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Slot Machine</title>
     <link rel="stylesheet" href="./assets/styles.css" />
+    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
     <script src="./assets/JQuery/jquery-3.6.1.min.js"></script>
+    <!-- <script defer src="./assets/bootstrap/js/bootstrap.min.js"></script> -->
     <script defer src="./assets/main.js"></script>
   </head>
   <body>
@@ -19,21 +21,19 @@
         </a>
     </nav>
     <div class="section-transitions">
-      <section class="slot-machine-section">
-        <div class="arrow-row">
+      <section class="slot-machine-section row">
+        <!-- <div class="arrow-row">
           <img src="./src/icons/icon-row-slot.svg" alt="Arrow icon" class="ring">
-        </div>
-        <div id="result-slot" class="perspective">
+        </div> -->
+        <div class="perspective col-md-12">
           <div id="rotate">
             <div id="ring1" class="ring"></div>
             <div id="ring2" class="ring"></div>
             <div id="ring3" class="ring"></div>
-            <div id="ring4" class="ring"></div>
-            <div id="ring5" class="ring"></div>
-        </div>
-        <div>
-            <button class="startSpinner">Start spinning</button>
           </div>
+        </div>
+        <div class="col-md-12 position-relative">
+            <button class="startSpinner">Start spinning</button>
         </div>
       </section>
       <section class="slide-show-section">
